@@ -125,10 +125,10 @@ const columns: ColumnDef<IParcel>[] = [
     enableSorting: false,
   },
   {
-    header: "Receiver",
-    accessorKey: "receiver",
+    header: "Recipient",
+    accessorKey: "recipient",
     cell: ({ row }) => {
-      const name = row.original?.receiver?.name;
+      const name = row.original?.recipient?.name;
       const initials = getNameInitials(name);
       return (
         <div className="flex items-start gap-3">
@@ -136,10 +136,10 @@ const columns: ColumnDef<IParcel>[] = [
             <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
-            <div className="font-medium">{row.original?.receiver?.name}</div>
+            <div className="font-medium">{row.original?.recipient?.name}</div>
             <div className="text-sm text-muted-foreground"> {formatStreetCity(row.original?.deliveryAddress)}</div>
-            <div className="text-sm text-muted-foreground">{row.original?.receiver?.email}</div>
-            <div className="text-sm text-muted-foreground">{row.original?.receiver?.phone}</div>
+            <div className="text-sm text-muted-foreground">{row.original?.recipient?.email}</div>
+            <div className="text-sm text-muted-foreground">{row.original?.recipient?.phone}</div>
           </div>
         </div>
       );
@@ -337,9 +337,9 @@ export default function AdminParcelsTable() {
   const id = useId();
   const [open, setOpen] = useState(false);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [typeFilter, setTypeFilter] = useState<ParcelType[]>([]);
-  const [shippingTypeFilter, setShippingTypeFilter] = useState<ShippingType[]>([]);
-  const [blockedParcelFilter, setBlockedParcelFilter] = useState<boolean | undefined>(undefined);
+  const [typeFilter] = useState<ParcelType[]>([]);
+  const [shippingTypeFilter] = useState<ShippingType[]>([]);
+  const [blockedParcelFilter] = useState<boolean | undefined>(undefined);
   const [statusFilter, setStatusFilter] = useState<string[]>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
     currentLocation: false,
@@ -347,7 +347,8 @@ export default function AdminParcelsTable() {
     cancelledAt: false,
     coupon: false,
     isPaid: false,
-    // deliveryPersonnel: false,
+    estimatedDelivery: false,
+    deliveryPersonnel: false,
   });
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -403,32 +404,32 @@ export default function AdminParcelsTable() {
     setPagination((prev) => ({ ...prev, pageIndex: 0 }));
   };
 
-  const handleTypeChange = (checked: boolean, value: ParcelType) => {
-    setTypeFilter((prev) => {
-      if (checked) {
-        return [...prev, value];
-      } else {
-        return prev.filter((type) => type !== value);
-      }
-    });
-    setPagination((prev) => ({ ...prev, pageIndex: 0 }));
-  };
+  // const handleTypeChange = (checked: boolean, value: ParcelType) => {
+  //   setTypeFilter((prev) => {
+  //     if (checked) {
+  //       return [...prev, value];
+  //     } else {
+  //       return prev.filter((type) => type !== value);
+  //     }
+  //   });
+  //   setPagination((prev) => ({ ...prev, pageIndex: 0 }));
+  // };
 
-  const handleShippingTypeChange = (checked: boolean, value: ShippingType) => {
-    setShippingTypeFilter((prev) => {
-      if (checked) {
-        return [...prev, value];
-      } else {
-        return prev.filter((type) => type !== value);
-      }
-    });
-    setPagination((prev) => ({ ...prev, pageIndex: 0 }));
-  };
+  // const handleShippingTypeChange = (checked: boolean, value: ShippingType) => {
+  //   setShippingTypeFilter((prev) => {
+  //     if (checked) {
+  //       return [...prev, value];
+  //     } else {
+  //       return prev.filter((type) => type !== value);
+  //     }
+  //   });
+  //   setPagination((prev) => ({ ...prev, pageIndex: 0 }));
+  // };
 
-  const handleBlockedParcelChange = (checked: boolean, value: boolean) => {
-    setBlockedParcelFilter(checked ? value : undefined);
-    setPagination((prev) => ({ ...prev, pageIndex: 0 }));
-  };
+  // const handleBlockedParcelChange = (checked: boolean, value: boolean) => {
+  //   setBlockedParcelFilter(checked ? value : undefined);
+  //   setPagination((prev) => ({ ...prev, pageIndex: 0 }));
+  // };
 
   const table = useReactTable({
     data: parcelsData?.data || [],
@@ -774,7 +775,7 @@ export default function AdminParcelsTable() {
                           <TableCell key={cell.id} className="last:py-0">
                             {row.original.estimatedDelivery
                               ? new Date(row.original.estimatedDelivery).toLocaleDateString()
-                              : "Not Available"}
+                              : "-"}
                           </TableCell>
                         );
                       }

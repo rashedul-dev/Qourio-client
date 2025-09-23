@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import {
   FileText,
@@ -129,7 +129,7 @@ export default function DeliveryStatusBarChart({ data }: DeliveryStatusBarChartP
     ["Rescheduled", "Cancelled", "Blocked", "Flagged"].includes(item._id)
   );
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       const IconComponent = getStatusIcon(data._id);

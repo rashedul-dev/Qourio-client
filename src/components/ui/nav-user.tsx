@@ -18,7 +18,7 @@ export function NavUser({
     avatar: string;
   };
 }) {
-  const { isMobile } = useSidebar();
+  const {} = useSidebar();
 
   const [logout] = useLogoutMutation();
   const dispatch = useAppDispatch();

@@ -8,7 +8,7 @@ import { useGetParcelByIdQuery } from "@/redux/features/parcel/parcelApi";
 import { IUpdatedBy } from "@/types/parcel-type";
 import { getStatusColor } from "@/utils/getStatusColor";
 import { format } from "date-fns";
-import { Home, IdCardIcon, Mail, MapPin, Package, Phone, User } from "lucide-react";
+import { IdCardIcon, Mail, MapPin, Package, Phone, User } from "lucide-react";
 import { useParams } from "react-router";
 import AdminParcelTimeLine from "./AdminParcelTimeLine";
 import { formatStreetCity } from "@/utils/formatAddress";

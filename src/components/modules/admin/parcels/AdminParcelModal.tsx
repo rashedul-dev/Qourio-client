@@ -78,7 +78,7 @@ export function AdminCreateParcelDialog({ open, onOpenChange }: CreateParcelDial
       senderEmail: "",
       receiverEmail: "",
       // pickupAddress: "",
-      // deliveryAddress: "",`
+      // deliveryAddress: "",
       weight: 0.1,
       type: ParcelType.PACKAGE,
       shippingType: ShippingType.STANDARD,
@@ -140,7 +140,7 @@ export function AdminCreateParcelDialog({ open, onOpenChange }: CreateParcelDial
             />
             <div className="relative">
               <FormField
-                control={form.control}
+                // control={form.control}
                 name="pickupAddress"
                 render={({ field }) => (
                   <FormItem>
@@ -166,7 +166,7 @@ export function AdminCreateParcelDialog({ open, onOpenChange }: CreateParcelDial
 
             <div className="relative">
               <FormField
-                control={form.control}
+                // control={form.control}
                 name="deliveryAddress"
                 render={({ field }) => (
                   <FormItem>
@@ -257,7 +257,7 @@ export function AdminCreateParcelDialog({ open, onOpenChange }: CreateParcelDial
                 </FormItem>
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name="couponCode"
               render={({ field }) => (
@@ -269,7 +269,7 @@ export function AdminCreateParcelDialog({ open, onOpenChange }: CreateParcelDial
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             <DialogFooter className="flex justify-between items-center">
               {isLoading && <Spinner variant={"circle-filled"} />}

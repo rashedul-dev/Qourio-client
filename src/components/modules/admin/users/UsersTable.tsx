@@ -21,7 +21,6 @@ import {
   ChevronUpIcon,
   Columns3Icon,
   EllipsisIcon,
-  FilterIcon,
   InfoIcon,
   PlusIcon,
   SearchIcon,
@@ -36,7 +35,6 @@ import Loading from "@/components/Loading";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogClose,
@@ -58,7 +56,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Pagination, PaginationContent, PaginationItem } from "@/components/ui/pagination";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -204,9 +201,9 @@ export default function UsersTable() {
   const id = useId();
   const [open, setOpen] = useState(false);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [roleFilter, setRoleFilter] = useState<Role[]>([]);
-  const [verifiedFilter, setVerifiedFilter] = useState<boolean | undefined>(undefined);
-  const [statusFilter, setStatusFilter] = useState<IsActive[]>([]);
+  const [roleFilter] = useState<Role[]>([]);
+  const [verifiedFilter] = useState<boolean | undefined>(undefined);
+  const [statusFilter] = useState<IsActive[]>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
     createdAt: false,
   });
@@ -250,35 +247,35 @@ export default function UsersTable() {
   };
 
   // handleRoleChange function
-  const handleRoleChange = (checked: boolean, value: Role) => {
-    setRoleFilter((prev) => {
-      if (checked) {
-        return [...prev, value];
-      } else {
-        return prev.filter((role) => role !== value);
-      }
-    });
-    setPagination((prev) => ({ ...prev, pageIndex: 0 }));
-  };
+  // const handleRoleChange = (checked: boolean, value: Role) => {
+  //   setRoleFilter((prev) => {
+  //     if (checked) {
+  //       return [...prev, value];
+  //     } else {
+  //       return prev.filter((role) => role !== value);
+  //     }
+  //   });
+  //   setPagination((prev) => ({ ...prev, pageIndex: 0 }));
+  // };
 
-  // handleStatusChange function
-  const handleStatusChange = (checked: boolean, value: IsActive) => {
-    setStatusFilter((prev) => {
-      if (checked) {
-        return [...prev, value];
-      } else {
-        return prev.filter((status) => status !== value);
-      }
-    });
-    setPagination((prev) => ({ ...prev, pageIndex: 0 }));
-  };
+  // // handleStatusChange function
+  // const handleStatusChange = (checked: boolean, value: IsActive) => {
+  //   setStatusFilter((prev) => {
+  //     if (checked) {
+  //       return [...prev, value];
+  //     } else {
+  //       return prev.filter((status) => status !== value);
+  //     }
+  //   });
+  //   setPagination((prev) => ({ ...prev, pageIndex: 0 }));
+  // };
 
-  // handleIsVerifiedChange function
-  const handleIsVerifiedChange = (checked: boolean, value: boolean) => {
-    const newValue = value ? true : false;
-    setVerifiedFilter(checked ? newValue : undefined);
-    setPagination((prev) => ({ ...prev, pageIndex: 0 }));
-  };
+  // // handleIsVerifiedChange function
+  // const handleIsVerifiedChange = (checked: boolean, value: boolean) => {
+  //   const newValue = value ? true : false;
+  //   setVerifiedFilter(checked ? newValue : undefined);
+  //   setPagination((prev) => ({ ...prev, pageIndex: 0 }));
+  // };
 
   const table = useReactTable({
     data: usersData?.data || [],

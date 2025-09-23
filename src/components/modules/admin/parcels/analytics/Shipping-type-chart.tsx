@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Cell, Pie, PieChart, ResponsiveContainer, Sector } from "recharts";
@@ -159,27 +159,27 @@ function ShippingTypeChart({ data }: ShippingTypeChartProps) {
     setHoveredIndex(-1);
   };
 
-  const CustomTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      const data = payload[0].payload;
-      const IconComponent = SHIPPING_ICONS[data._id as keyof typeof SHIPPING_ICONS];
-      return (
-        <ChartTooltipContent>
-          <div className="bg-background/95 backdrop-blur-sm border border-border/50 rounded-xl p-4 shadow-xl">
-            <div className="flex items-center gap-2 mb-2">
-              <IconComponent className="w-4 h-4" style={{ color: data.fill }} />
-              <p className="font-semibold text-foreground capitalize">{data._id.replace("_", " ")}</p>
-            </div>
-            <p className="text-lg font-bold" style={{ color: data.fill }}>
-              {data.count?.toLocaleString()} parcels
-            </p>
-            <p className="text-sm text-muted-foreground">{data.percentage?.toFixed(1)}% of total shipments</p>
-          </div>
-        </ChartTooltipContent>
-      );
-    }
-    return null;
-  };
+  // const CustomTooltip = ({ active, payload }: any) => {
+  //   if (active && payload && payload.length) {
+  //     const data = payload[0].payload;
+  //     const IconComponent = SHIPPING_ICONS[data._id as keyof typeof SHIPPING_ICONS];
+  //     return (
+  //       <ChartTooltipContent>
+  //         <div className="bg-background/95 backdrop-blur-sm border border-border/50 rounded-xl p-4 shadow-xl">
+  //           <div className="flex items-center gap-2 mb-2">
+  //             <IconComponent className="w-4 h-4" style={{ color: data.fill }} />
+  //             <p className="font-semibold text-foreground capitalize">{data._id.replace("_", " ")}</p>
+  //           </div>
+  //           <p className="text-lg font-bold" style={{ color: data.fill }}>
+  //             {data.count?.toLocaleString()} parcels
+  //           </p>
+  //           <p className="text-sm text-muted-foreground">{data.percentage?.toFixed(1)}% of total shipments</p>
+  //         </div>
+  //       </ChartTooltipContent>
+  //     );
+  //   }
+  //   return null;
+  // };
 
   return (
     <div className="relative group">

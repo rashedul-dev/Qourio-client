@@ -10,7 +10,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -19,7 +18,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Spinner } from "@/components/ui/shadcn-io/spinner";
 import { useCreateParcelMutation } from "@/redux/features/parcel/parcelApi";
 import { IParcel, ParcelType, ShippingType } from "@/types/sender-parcel-type";
-import { InfoIcon } from "lucide-react";
 import { toast } from "sonner";
 
 // Helper to parse a comma-separated string into an address object
@@ -124,7 +122,7 @@ export function CreateParcelDialog({ open, onOpenChange }: CreateParcelDialogPro
             />
             <div className="relative">
               <FormField
-                control={form.control}
+                // control={form.control}
                 name="pickupAddress"
                 render={({ field }) => (
                   <FormItem>
@@ -150,7 +148,7 @@ export function CreateParcelDialog({ open, onOpenChange }: CreateParcelDialogPro
 
             <div className="relative">
               <FormField
-                control={form.control}
+                // control={form.control}
                 name="deliveryAddress"
                 render={({ field }) => (
                   <FormItem>

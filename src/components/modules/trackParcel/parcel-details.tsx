@@ -14,8 +14,8 @@ import { useSearchParams } from "react-router"
 import { useState } from "react"
 
 const ParcelDetails = ({ data }: { data: IResponse<IParcelTrackData> }) => {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const [trackingId, setTrackingId] = useState(searchParams.get("trackingId") || "")
+  const [searchParams] = useSearchParams()
+  const [trackingId] = useState(searchParams.get("trackingId") || "")
 
   const {
     // trackingId,

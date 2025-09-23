@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Cell, Pie, PieChart, ResponsiveContainer, Sector } from "recharts";
@@ -88,7 +88,7 @@ function TypePieChart({ data }: TypePieChartProps) {
     },
   ]
     .filter((item) => item.count > 0)
-    .map((item, index) => ({
+    .map((item) => ({
       ...item,
       percentage: total > 0 ? (item.count / total) * 100 : 0,
     }));

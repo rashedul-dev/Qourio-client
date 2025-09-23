@@ -52,7 +52,6 @@ import { getNameInitials } from "@/utils/getNameInitials";
 import { getStatusColor } from "@/utils/getStatusColor";
 import { format } from "date-fns";
 import { formatStreetCity } from "@/utils/formatAddress";
-import { getEstimatedDeliveryDate } from "@/utils/estimatedDeliveryDate";
 
 const columns: ColumnDef<IParcel>[] = [
   {
