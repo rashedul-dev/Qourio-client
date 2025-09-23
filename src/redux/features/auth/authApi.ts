@@ -8,10 +8,12 @@ export const authApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: "/auth/login",
         method: "POST",
-        data,
+        body: data, 
+        headers: {
+          "Content-Type": "application/json", 
+        },
       }),
-      // Invalidate user cache after successful login
-      invalidatesTags: ["USER"],
+      invalidatesTags: ["USER"], 
     }),
     logout: builder.mutation<IResponse<void>, void>({
       query: () => ({
@@ -26,50 +28,35 @@ export const authApi = baseApi.injectEndpoints({
         method: "POST",
       }),
     }),
-    changePassword: builder.mutation<
-      IResponse<void>,
-      Partial<{ oldPassword: string; newPassword: string }>
-    >({
+    changePassword: builder.mutation<IResponse<void>, Partial<{ oldPassword: string; newPassword: string }>>({
       query: (data) => ({
         url: "/auth/change-password",
         method: "POST",
         data,
       }),
     }),
-    forgotPassword: builder.mutation<
-      IResponse<void>,
-      Partial<{ email: string }>
-    >({
+    forgotPassword: builder.mutation<IResponse<void>, Partial<{ email: string }>>({
       query: (data) => ({
         url: "/auth/forgot-password",
         method: "POST",
         data,
       }),
     }),
-    resetPassword: builder.mutation<
-      IResponse<void>,
-      Partial<{ password: string; token: string }>
-    >({
+    resetPassword: builder.mutation<IResponse<void>, Partial<{ password: string; token: string }>>({
       query: (data) => ({
         url: "/auth/reset-password",
         method: "POST",
         data,
       }),
     }),
-    sendOtp: builder.mutation<
-      IResponse<void>,
-      Partial<{ name: string; email: string }>
-    >({
+    sendOtp: builder.mutation<IResponse<void>, Partial<{ name: string; email: string }>>({
       query: (data) => ({
         url: "/otp/send",
         method: "POST",
         data,
       }),
     }),
-    verifyOtp: builder.mutation<
-      IResponse<void>,
-      Partial<{ email: string; otp: string }>
-    >({
+    verifyOtp: builder.mutation<IResponse<void>, Partial<{ email: string; otp: string }>>({
       query: (data) => ({
         url: "/otp/verify",
         method: "POST",
