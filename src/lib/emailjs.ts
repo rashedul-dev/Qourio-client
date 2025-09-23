@@ -56,33 +56,31 @@ export interface EmailConfig {
 export class EmailJSError extends Error {
   constructor(message: string, public code?: string) {
     super(message);
-    this.name = 'EmailJSError';
+    this.name = "EmailJSError";
   }
 }
 
 export class EmailJSConfigError extends EmailJSError {
   constructor(message: string) {
-    super(message, 'CONFIG_ERROR');
-    this.name = 'EmailJSConfigError';
+    super(message, "CONFIG_ERROR");
+    this.name = "EmailJSConfigError";
   }
 }
 
 export class EmailJSNotAvailableError extends EmailJSError {
   constructor() {
-    super('EmailJS is not available. Make sure the library is loaded.', 'NOT_AVAILABLE');
-    this.name = 'EmailJSNotAvailableError';
+    super("EmailJS is not available. Make sure the library is loaded.", "NOT_AVAILABLE");
+    this.name = "EmailJSNotAvailableError";
   }
 }
 
 // Validate EmailJS configuration
 const validateEmailJSConfig = (config: EmailConfig): void => {
-  const requiredFields = ['emailJsServiceId', 'emailJsTemplateId', 'emailJsPublicKey'] as const;
-  const missingFields = requiredFields.filter(field => !config[field]);
-  
+  const requiredFields = ["emailJsServiceId", "emailJsTemplateId", "emailJsPublicKey"] as const;
+  const missingFields = requiredFields.filter((field) => !config[field]);
+
   if (missingFields.length > 0) {
-    throw new EmailJSConfigError(
-      `EmailJS configuration is incomplete. Missing: ${missingFields.join(', ')}`
-    );
+    throw new EmailJSConfigError(`EmailJS configuration is incomplete. Missing: ${missingFields.join(", ")}`);
   }
 };
 
@@ -123,10 +121,10 @@ export const loadEmailJS = (): Promise<boolean> => {
       return;
     }
 
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js";
     script.async = true;
-    
+
     script.onload = () => {
       if (window.emailjs) {
         resolve(true);
@@ -134,11 +132,11 @@ export const loadEmailJS = (): Promise<boolean> => {
         reject(new EmailJSNotAvailableError());
       }
     };
-    
+
     script.onerror = () => {
-      reject(new EmailJSError('Failed to load EmailJS script'));
+      reject(new EmailJSError("Failed to load EmailJS script"));
     };
-    
+
     document.head.appendChild(script);
   });
 };
@@ -152,7 +150,7 @@ export const initEmailJSWithKey = async (publicKey?: string): Promise<void> => {
   const config = getEmailJSConfig();
   const key = publicKey || config.emailJsPublicKey;
   if (!key) {
-    throw new EmailJSConfigError('EmailJS public key is required');
+    throw new EmailJSConfigError("EmailJS public key is required");
   }
 
   if (window.emailjs) {
@@ -172,10 +170,10 @@ export const sendEmail = async (
   try {
     // Get configuration
     const config = getEmailJSConfig();
-    
+
     // Validate configuration
     validateEmailJSConfig(config);
-    
+
     // Ensure EmailJS is initialized
     if (!initializeEmailJS()) {
       await loadEmailJS();
@@ -191,12 +189,7 @@ export const sendEmail = async (
     const publicKey = options?.publicKey || config.emailJsPublicKey!;
 
     // Send the email
-    const response = await window.emailjs.send(
-      serviceId,
-      templateId,
-      templateParams,
-      publicKey
-    );
+    const response = await window.emailjs.send(serviceId, templateId, templateParams, publicKey);
 
     return response;
   } catch (error) {
@@ -204,11 +197,9 @@ export const sendEmail = async (
     if (error instanceof EmailJSError) {
       throw error;
     }
-    
+
     // Wrap other errors
-    throw new EmailJSError(
-      `Failed to send email: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
+    throw new EmailJSError(`Failed to send email: ${error instanceof Error ? error.message : "Unknown error"}`);
   }
 };
 
@@ -224,7 +215,7 @@ export const sendEmailForm = async (
   try {
     const config = getEmailJSConfig();
     validateEmailJSConfig(config);
-    
+
     if (!initializeEmailJS()) {
       await loadEmailJS();
     }
@@ -237,22 +228,15 @@ export const sendEmailForm = async (
     const templateId = options?.templateId || config.emailJsTemplateId!;
     const publicKey = options?.publicKey || config.emailJsPublicKey!;
 
-    const response = await window.emailjs.sendForm(
-      serviceId,
-      templateId,
-      form,
-      publicKey
-    );
+    const response = await window.emailjs.sendForm(serviceId, templateId, form, publicKey);
 
     return response;
   } catch (error) {
     if (error instanceof EmailJSError) {
       throw error;
     }
-    
-    throw new EmailJSError(
-      `Failed to send form email: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
+
+    throw new EmailJSError(`Failed to send form email: ${error instanceof Error ? error.message : "Unknown error"}`);
   }
 };
 
@@ -276,7 +260,7 @@ export const getEmailJSStatus = () => {
 // Hook for React components (optional)
 export const useEmailJS = () => {
   const status = getEmailJSStatus();
-  
+
   return {
     ...status,
     sendEmail: (templateParams: EmailTemplateParams) => sendEmail(templateParams),
