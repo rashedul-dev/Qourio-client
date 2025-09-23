@@ -163,7 +163,7 @@
   }
 
   .btn-glow-scale {
-    @apply text-white font-bold text-lg py-2 px-6 bg-red-500 rounded;
+    @apply text-white font-bold text-lg py-2 px-6 bg-primary rounded;
     animation: glow-scale 2s infinite ease-in-out;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }

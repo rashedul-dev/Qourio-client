@@ -19,12 +19,12 @@ export function LoginForm({ className, ...props }: React.HTMLAttributes<HTMLDivE
       // password: "!SENDER123",
       // email: "receiver@gmail.com",
       // password: "!RECEIVER123",
-      // email: "admin@gmail.com",
-      // password: "ADMIN!123",
+      email: "admin@gmail.com",
+      password: "ADMIN!123",
       // email: "bot101.trio@gmail.com",
       // password: "BOT101!!!!",
-      email: "",
-      password: "",
+      // email: "",
+      // password: "",
     },
   });
   const [login, { isLoading }] = useLoginMutation();
@@ -83,13 +83,13 @@ export function LoginForm({ className, ...props }: React.HTMLAttributes<HTMLDivE
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
-              control={form.control}
+              // control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="ph@Quorio .com" {...field} value={field.value || ""} />
+                    <Input placeholder="example@gmail.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -97,13 +97,13 @@ export function LoginForm({ className, ...props }: React.HTMLAttributes<HTMLDivE
             />
 
             <FormField
-              control={form.control}
+              // control={form.control}
               name="password"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="********" {...field} value={field.value || ""} />
+                    <Input type="password" placeholder="********" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -9,7 +9,7 @@ const testimonials = [
     content:
       "Quorio transformed our delivery operations completely. We've seen a 40% improvement in delivery times and customer satisfaction has never been higher.",
     rating: 5,
-    avatar: "src/assets/images/place-holder-img-3.png",
+    avatar: "/public/assets/images/place-holder-img-3.png",
   },
   {
     name: "Michael Chen",
@@ -18,7 +18,7 @@ const testimonials = [
     content:
       "The real-time tracking and analytics have given us unprecedented visibility into our supply chain. It's like having a crystal ball for logistics.",
     rating: 5,
-    avatar: "src/assets/images/place-holder-img-2.png",
+    avatar: "/public/assets/images/place-holder-img-2.png",
   },
   {
     name: "Emily Rodriguez",
@@ -60,7 +60,7 @@ export function TestimonialsSection() {
 
                 <div className="flex items-center">
                   <img
-                    src={testimonial.avatar || "src/assets/images/place-holder-img-1.png"}
+                    src={testimonial.avatar || "/public/assets/images/place-holder-img-1.png"}
                     alt={testimonial.name}
                     className="w-12 h-12 rounded-full mr-4"
                   />

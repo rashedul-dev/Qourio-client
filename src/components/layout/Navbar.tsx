@@ -1,4 +1,4 @@
-import Logo from "@/assets/icons/Logo";
+import Logo from "@/components/icons/Logo";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
