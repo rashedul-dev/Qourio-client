@@ -6,8 +6,8 @@ Quorio is a comprehensive, full-stack parcel delivery management system designed
 
 | Environment  | URL                                                    |
 | ------------ | ------------------------------------------------------ |
-| **Frontend** | [quorio.vercel.app](https://quorio.vercel.app)         |
-| **Backend**  | [quorio-api.vercel.app](https://quorio-api.vercel.app) |
+| **Frontend** | [quorio.vercel.app](https://qourio.vercel.app)         |
+| **Backend**  | [quorio-api.vercel.app](https://qourio-api.vercel.app) |
 
 ## ✨ Key Features
 
