@@ -1,4 +1,4 @@
-import Logo from "@/assets/icons/Logo";
+import Logo from "@/components/icons/Logo";
 import { LoginForm } from "@/components/modules/authentication/LoginForm";
 import { Link } from "react-router";
 
@@ -19,7 +19,7 @@ export default function Login() {
       </div>
       <div className="relative hidden bg-muted lg:block">
         <img
-          src="src\assets\images\login-page-img.png"
+          src="/images/login-page-img.png"
           alt="Register Image"
           className="absolute mx-auto mt-30 inset-0 h-[70%] object-cover "
         />

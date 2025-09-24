@@ -7,7 +7,7 @@ export default function Register() {
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="relative hidden bg-muted lg:block">
         <img
-          src="src\assets\images\register-page-img.png"
+          src="/images/register-page-img.png"
           alt="Register Image"
           className="absolute mx-auto inset-0 mt-30 p-30 object-cover "
         />

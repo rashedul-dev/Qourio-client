@@ -11,7 +11,7 @@ export function HeroSection() {
           <div className="relative order-1 lg:order-2">
             <div className="relative z-10">
               <img
-                src="/public/assets/images/home-rightSide-img.png"
+                src="/images/home-rightSide-img.png"
                 alt="Delivery Management Dashboard"
                 className="w-full h-auto rounded-lg"
               />
