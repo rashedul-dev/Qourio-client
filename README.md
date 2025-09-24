@@ -2,6 +2,11 @@
 
 Quorio is a comprehensive, full-stack parcel delivery management system designed to streamline logistics for senders, receivers, and administrators. The frontend is a modern and responsive web application built with React, TypeScript, and Redux Toolkit, providing a seamless user experience for managing, tracking, and analyzing parcel deliveries.
 
+## 📂 Repository Links
+
+- **Frontend**: [`rashedul-dev/Qourio-client`](https://github.com/rashedul-dev/Qourio-client)
+- **Backend**: [`rashedul-dev/Qourio-backend`](https://github.com/rashedul-dev/Qourio-backend)
+
 ## 🌐 Live Deployment
 
 | Environment  | URL                                                    |
