@@ -19,12 +19,12 @@ export function LoginForm({ className, ...props }: React.HTMLAttributes<HTMLDivE
       // password: "!SENDER123",
       // email: "receiver@gmail.com",
       // password: "!RECEIVER123",
-      email: "admin@gmail.com",
-      password: "ADMIN!123",
+      // email: "admin@gmail.com",
+      // password: "ADMIN!123",
       // email: "bot101.trio@gmail.com",
       // password: "BOT101!!!!",
-      // email: "",
-      // password: "",
+      email: "",
+      password: "",
     },
   });
   const [login, { isLoading }] = useLoginMutation();
