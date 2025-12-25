@@ -18,13 +18,10 @@ import type { TRole } from "@/types";
 import { Role } from "@/types/user-type";
 import { generateRoutes } from "@/utils/generateRoutes";
 import { withAuth } from "@/utils/withAuth";
+import { withGuest } from "@/utils/withGuest";
 import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarItems } from "./adminSidebarItems";
-import {
-  ADMIN_DEFAULT_ROUTE,
-  RECEIVER_DEFAULT_ROUTE,
-  SENDER_DEFAULT_ROUTE,
-} from "./constants";
+import { ADMIN_DEFAULT_ROUTE, RECEIVER_DEFAULT_ROUTE, SENDER_DEFAULT_ROUTE } from "./constants";
 import { receiverSidebarItems } from "./receiverSidebarItems";
 import { senderSidebarItems } from "./senderSidebarItems";
 
@@ -99,11 +96,11 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    Component: Login,
+    Component: withGuest(Login),
     path: "/login",
   },
   {
-    Component: Register,
+    Component: withGuest(Register),
     path: "/register",
   },
   {
