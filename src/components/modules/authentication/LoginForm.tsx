@@ -13,42 +13,30 @@ import { toast } from "sonner";
 export function LoginForm({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const navigate = useNavigate();
   const form = useForm({
-    //! For development only
     defaultValues: {
-      // email: "sender@gmail.com",
-      // password: "!SENDER123",
-      // email: "receiver@gmail.com",
-      // password: "!RECEIVER123",
-      // email: "admin@gmail.com",
-      // password: "ADMIN!123",
-      // email: "bot101.trio@gmail.com",
-      // password: "BOT101!!!!",
       email: "",
       password: "",
     },
   });
   const [login, { isLoading }] = useLoginMutation();
+
   const onSubmit: SubmitHandler<ILogin> = async (data) => {
     try {
       const res = await login(data).unwrap();
 
       const role = res?.data?.user?.role?.toUpperCase();
-      // console.log("User role:", role);
+
       if (role === "ADMIN" || role === "SUPER_ADMIN") {
-        // console.log("User is an admin");
         toast.success("Logged in successfully");
         navigate(ADMIN_DEFAULT_ROUTE, { replace: true });
         return;
       } else if (role === "SENDER") {
-        console.log("User is a sender");
         toast.success("Logged in successfully");
         navigate(SENDER_DEFAULT_ROUTE, { replace: true });
         return;
       } else if (role === "RECEIVER") {
-        // console.log("User is a receiver");
         toast.success("Logged in successfully");
         navigate(RECEIVER_DEFAULT_ROUTE, { replace: true });
-        // console.log("Navigated to receiver dashboard");
         return;
       } else {
         toast.success("Logged in successfully");
@@ -73,6 +61,13 @@ export function LoginForm({ className, ...props }: React.HTMLAttributes<HTMLDivE
     }
   };
 
+  // Handler for quick demo login
+  const handleQuickLogin = async (email: string, password: string) => {
+    form.setValue("email", email);
+    form.setValue("password", password);
+    await onSubmit({ email, password });
+  };
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
@@ -83,7 +78,6 @@ export function LoginForm({ className, ...props }: React.HTMLAttributes<HTMLDivE
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
-              // control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
@@ -97,7 +91,6 @@ export function LoginForm({ className, ...props }: React.HTMLAttributes<HTMLDivE
             />
 
             <FormField
-              // control={form.control}
               name="password"
               render={({ field }) => (
                 <FormItem>
@@ -113,8 +106,9 @@ export function LoginForm({ className, ...props }: React.HTMLAttributes<HTMLDivE
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Logging in..." : "Login"}
             </Button>
+
             <div>
-              <LoginTry></LoginTry>
+              <LoginTry onQuickLogin={handleQuickLogin} />
             </div>
           </form>
         </Form>

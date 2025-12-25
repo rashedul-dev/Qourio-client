@@ -1,66 +1,62 @@
 import { useState } from "react";
 import { Disclosure, DisclosureContent, DisclosureTrigger } from "./ui/disclosure";
+import { Button } from "./ui/button";
 
-const credentials = [
-  { email: "sender@gmail.com", password: "!SENDER123" },
-  { email: "receiver@gmail.com", password: "!RECEIVER123" },
-  { email: "admin@gmail.com", password: "ADMIN!123" },
+const demoAccounts = [
+  { role: "Admin", email: "admin@gmail.com", password: "ADMIN!123" },
+  { role: "Sender", email: "sender@gmail.com", password: "!SENDER123" },
+  { role: "Receiver", email: "receiver@gmail.com", password: "!RECEIVER123" },
 ];
 
-export function LoginTry() {
-  const [copied, setCopied] = useState<string | null>(null);
+export function LoginTry({ onQuickLogin }: { onQuickLogin: (email: string, password: string) => void }) {
+  const [loading, setLoading] = useState<string | null>(null);
 
-  const handleCopy = (text: string, e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation(); // prevent parent click events
-    e.preventDefault(); // prevent default behavior just in case
-    navigator.clipboard.writeText(text);
-    setCopied(text);
-    setTimeout(() => setCopied(null), 1500);
+  const handleQuickLogin = async (role: string, email: string, password: string) => {
+    setLoading(role);
+    try {
+      await onQuickLogin(email, password);
+    } finally {
+      setLoading(null);
+    }
   };
 
   return (
-    <Disclosure className="w-[330px] rounded-md border border-zinc-200 px-3 dark:border-zinc-700">
+    <Disclosure className="w-full rounded-md border border-zinc-200 dark:border-zinc-700">
       <DisclosureTrigger>
-        <button className="w-full py-2 text-left text-sm font-light hover:scale-none font-stretch-1%" type="button">
-          Just want to try?
+        <button
+          className="w-full py-2 text-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          type="button"
+        >
+          Quick Demo Login
         </button>
       </DisclosureTrigger>
 
       <DisclosureContent>
-        <div className="overflow-hidden pb-3">
-          <div className="pt-1 font-mono text-sm">
-            <p>
-              Use these demo <span className="font-bold">email</span> and <span className="font-bold">password</span>{" "}
-              pairs to log in as sender, receiver, or admin for testing.
+        <div className="overflow-hidden pb-3 px-3">
+          <div className="pt-2">
+            <p className="text-xs text-muted-foreground mb-3 text-center">
+              Try the app instantly with demo accounts
             </p>
 
-            <div className="mt-2 space-y-3">
-              {credentials.map((cred, i) => (
-                <div key={i} className="rounded-md bg-zinc-100 p-2 text-xs dark:bg-zinc-950">
-                  {/* Email row */}
-                  <div className="flex items-center justify-between">
-                    <code>{cred.email}</code>
-                    <button
-                      type="button"
-                      onClick={(e) => handleCopy(cred.email, e)}
-                      className="ml-2 rounded bg-zinc-200 px-2 py-1 text-xs dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
-                    >
-                      {copied === cred.email ? "Copied!" : "Copy"}
-                    </button>
-                  </div>
-
-                  {/* Password row */}
-                  <div className="mt-1 flex items-center justify-between">
-                    <code>{cred.password}</code>
-                    <button
-                      type="button"
-                      onClick={(e) => handleCopy(cred.password, e)}
-                      className="ml-2 rounded bg-zinc-200 px-2 py-1 text-xs dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
-                    >
-                      {copied === cred.password ? "Copied!" : "Copy"}
-                    </button>
-                  </div>
-                </div>
+            <div className="space-y-2">
+              {demoAccounts.map((account) => (
+                <Button
+                  key={account.role}
+                  type="button"
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => handleQuickLogin(account.role, account.email, account.password)}
+                  disabled={loading !== null}
+                >
+                  {loading === account.role ? (
+                    <span className="flex items-center gap-2">
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                      Logging in...
+                    </span>
+                  ) : (
+                    `Login as ${account.role}`
+                  )}
+                </Button>
               ))}
             </div>
           </div>
