@@ -1,4 +1,5 @@
 import Logo from "@/components/icons/Logo";
+import { Link } from "react-router";
 
 export default function Footer() {
   return (
@@ -17,7 +18,7 @@ export default function Footer() {
             <ul className="mt-8 flex gap-6">
               <li>
                 <a
-                  href="#"
+                  href="https://www.facebook.com/"
                   rel="noreferrer"
                   target="_blank"
                   className="text-foreground/80 transition hover:text-primary dark:hover:text-primary-foreground"
@@ -27,7 +28,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/"
                   rel="noreferrer"
                   target="_blank"
                   className="text-foreground/80 transition hover:text-primary"
@@ -37,7 +38,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="https://www.x.com"
                   rel="noreferrer"
                   target="_blank"
                   className="text-foreground/80 transition hover:text-primary"
@@ -52,12 +53,12 @@ export default function Footer() {
               <p className="font-semibold text-primary dark:text-foreground">Parcel Services</p>
               <ul className="mt-6 space-y-4 text-base">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     className="text-foreground/90 transition hover:text-primary dark:hover:text-primary-foreground"
                   >
                     Send a Parcel
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" className="text-foreground/90 transition hover:text-primary">
@@ -85,12 +86,12 @@ export default function Footer() {
               <p className="font-semibold text-primary dark:text-foreground">Company</p>
               <ul className="mt-6 space-y-4 text-base">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/about"
                     className="text-foreground/90 transition hover:text-primary dark:hover:text-primary-foreground"
                   >
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" className="text-foreground/90 transition hover:text-primary">
@@ -108,17 +109,17 @@ export default function Footer() {
               <p className="font-semibold text-primary dark:text-foreground">Support</p>
               <ul className="mt-6 space-y-4 text-base">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/contact"
                     className="text-foreground/90 transition hover:text-primary dark:hover:text-primary-foreground"
                   >
                     Contact
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-foreground/90 transition hover:text-primary">
+                  <Link to="/faq" className="text-foreground/90 transition hover:text-primary">
                     FAQs
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" className="text-foreground/90 transition hover:text-primary">
